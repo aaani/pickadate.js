@@ -1,0 +1,41 @@
+<!--Demo: how to use angular module -->
+<html>
+<head>
+	<link rel="stylesheet" href="lib/themes/default.css" id="theme_base">
+	<link rel="stylesheet" href="lib/themes/default.date.css" id="theme_date">
+
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="lib/picker.js"></script>
+	<script src="lib/picker.date.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js" type="text/javascript"> </script>
+	<script src="lib/picker.angular.js" type="text/javascript"> </script>
+	<script type="text/javascript">
+		angular.module('mymod',['pickadate']).controller('testing', ['$scope', '$timeout', function($scope, $timeout) {
+			$scope.onStart = function() {
+				console.log("start");
+			};
+
+			$scope.onOpen = function() {
+				console.log("open");
+			};
+
+			$scope.options = {
+				showMonthsShort: true,
+				clear: "Erase",
+				format: 'dd mmmm, yyyy',
+				onStart: function() {
+					console.log('started :)')
+				},
+				onSet: function(context) {
+					console.log('Just set stuff:', context);
+					console.log($scope["pickDateInput"]);
+				}
+			};
+
+		}]);
+	</script>
+</head>
+<body ng-app="mymod" ng-controller="testing">
+	<input options="options" pickdateobject="'pickDateInput'" pick-date></div>
+</body>
+</html>
